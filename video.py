@@ -51,6 +51,8 @@ def renderResultOnImage( result):
     global neutralIndex
     if 'description' in result:
 	print result['description']
+    cv2.namedWindow("Channels", cv2.WND_PROP_FULLSCREEN)	
+    cv2.setWindowProperty("Channels", cv2.WND_PROP_FULLSCREEN, cv2.CV_WINDOW_FULLSCREEN)	
     if 'faces' in result:
 	maleNumber = 0
 	femaleNumber = 0
@@ -61,9 +63,7 @@ def renderResultOnImage( result):
 		maleNumber = maleNumber + 1
 	    else:
 	        femaleNumber = femaleNumber + 1
-	if femaleNumber > maleNumber:	
-    	    cv2.namedWindow("Channels")
-    	    cv2.moveWindow("Channels",600,300)
+	if femaleNumber > maleNumber:
 	    img123 = cv2.imread(womenAds[womenIndex],0)
 	    cv2.resize(img123, (300, 300))
 	    if(womenIndex < 4):	
@@ -72,18 +72,14 @@ def renderResultOnImage( result):
 	        womenIndex = 0
     	    cv2.imshow("Channels", img123 )
 	else:
-    	    cv2.namedWindow("Channels")
-    	    cv2.moveWindow("Channels",600,300)
 	    img123 = cv2.imread(menAds[menIndex],0)
 	    cv2.resize(img123, (300, 300))
-	    if(womenIndex < 4):	
+	    if(menIndex < 4):	
 	        menIndex = menIndex + 1
 	    else:
 	        menIndex = 0
     	    cv2.imshow("Channels", img123 )	
-    else:			
-        cv2.namedWindow("Channels")
-        cv2.moveWindow("Channels",600,300)
+    else:
 	img123 = cv2.imread(neutralAds[neutralIndex],0)
 	cv2.resize(img123, (300, 300))
 	if(neutralIndex < 8):	
@@ -111,8 +107,8 @@ def callVision():
     if result is not None:
         renderResultOnImage( result)
     else:			
-        cv2.namedWindow("Channels")
-        cv2.moveWindow("Channels",600,300)
+        cv2.namedWindow("Channels", cv2.WND_PROP_FULLSCREEN)
+        cv2.setWindowProperty("Channels", cv2.WND_PROP_FULLSCREEN, cv2.CV_WINDOW_FULLSCREEN)
 	img123 = cv2.imread(neutralAds[neutralIndex],0)
 	cv2.resize(img123, (300, 300))
 	if(neutralIndex < 8):	
