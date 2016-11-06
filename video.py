@@ -19,7 +19,7 @@ neutralIndex = 0
 
 tempSensor = mraa.Gpio(26)
 tempSensor.dir(mraa.DIR_IN)
-motioSensor = mraa.Gpio(32)
+motionSensor = mraa.Gpio(32)
 motionSensor.dir(mraa.DIR_IN)
 
 def processRequest( json, data, headers, params ):
