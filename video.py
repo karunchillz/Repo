@@ -93,6 +93,7 @@ cap = cv2.VideoCapture(2)
 
 # Create the haar cascade
 cascPath = "haarcascade_frontalface_default.xml"
+smilePath = "haarcascade_smile.xml"
 faceCascade = cv2.CascadeClassifier(cascPath)
 
 Timer(10.0, callVision).start()
@@ -108,6 +109,24 @@ while(True):
     # Detect faces in the image
     faces = faceCascade.detectMultiScale(gray,scaleFactor=1.1,minNeighbors=5,minSize=(30, 30),flags = cv2.CASCADE_SCALE_IMAGE)
     print("Found {0} faces!".format(len(faces)))
+
+    for (x, y, w, h) in faces:
+        cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 0, 255), 2)
+        roi_gray = gray[y:y+h, x:x+w]
+        roi_color = frame[y:y+h, x:x+w]
+
+        smile = smileCascade.detectMultiScale(
+            roi_gray,
+            scaleFactor= 1.7,
+            minNeighbors=22,
+            minSize=(25, 25),
+            flags=cv2.cv.CV_HAAR_SCALE_IMAGE
+            )
+
+        # Set region of interest for smiles
+        for (x, y, w, h) in smile:
+            print "Found", len(smile), "smiles!"
+            cv2.rectangle(roi_color, (x, y), (x+w, y+h), (255, 0, 0), 1)
 
     # Draw a rectangle around the faces
     for (x, y, w, h) in faces:
