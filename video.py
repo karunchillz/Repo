@@ -121,7 +121,7 @@ while(True):
             scaleFactor= 1.7,
             minNeighbors=22,
             minSize=(25, 25),
-            flags=cv2.cv.CV_HAAR_SCALE_IMAGE
+            flags= cv2.CASCADE_SCALE_IMAGE
             )
 
         # Set region of interest for smiles
