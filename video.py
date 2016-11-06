@@ -177,9 +177,9 @@ while(True):
     cv2.imshow("Main", frame)
     cv2.imwrite('color_image.png',frame) 
 	
-    print tempSensor.read()
-    print motionSensor.read()
-    print ("End of Loop")
+    #print tempSensor.read()
+    #print motionSensor.read()
+    #print ("End of Loop")
     
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
