@@ -18,7 +18,6 @@ neutralIndex = 0
 
 # Display images within Jupyter
 def processRequest( json, data, headers, params ):
-
     retries = 0
     result = None
     while True:
@@ -47,8 +46,11 @@ def processRequest( json, data, headers, params ):
     return result
 
 def renderResultOnImage( result):
+    global menIndex
+    global womenIndex
+    global neutralIndex
     if 'description' in result:
-	print result['description']['captions']
+	print result['description']
     if 'faces' in result:
 	maleNumber = 0
 	femaleNumber = 0
@@ -64,24 +66,34 @@ def renderResultOnImage( result):
     	    cv2.moveWindow("Channels",600,300)
 	    img123 = cv2.imread(womenAds[womenIndex],0)
 	    cv2.resize(img123, (300, 300))
-	    womenIndex = womenIndex + 1
+	    if(womenIndex < 4)	
+	        womenIndex = womenIndex + 1
+	    else
+	        womenIndex = 0
     	    cv2.imshow("Channels", img123 )
 	else:
     	    cv2.namedWindow("Channels")
     	    cv2.moveWindow("Channels",600,300)
 	    img123 = cv2.imread(menAds[menIndex],0)
 	    cv2.resize(img123, (300, 300))
-	    menIndex = menIndex + 1
+	    if(womenIndex < 4)	
+	        menIndex = menIndex + 1
+	    else
+	        menIndex = 0
     	    cv2.imshow("Channels", img123 )	
     else:			
         cv2.namedWindow("Channels")
         cv2.moveWindow("Channels",600,300)
 	img123 = cv2.imread(neutralAds[neutralIndex],0)
 	cv2.resize(img123, (300, 300))
-	neutralIndex = neutralIndex + 1
+	if(neutralIndex < 8)	
+	    neutralIndex = neutralIndex + 1
+	else
+	    neutralIndex = 0
         cv2.imshow("Channels", img123 )	
 	
 def callVision():
+    global neutralIndex
     # Load raw image file into memory
     pathToFileInDisk = '/home/root/Desktop/code/color_image.png'
     with open( pathToFileInDisk, 'rb' ) as f:
@@ -103,7 +115,10 @@ def callVision():
         cv2.moveWindow("Channels",600,300)
 	img123 = cv2.imread(neutralAds[neutralIndex],0)
 	cv2.resize(img123, (300, 300))
-	neutralIndex = neutralIndex + 1
+	if(neutralIndex < 8)	
+	    neutralIndex = neutralIndex + 1
+	else
+	    neutralIndex = 0
         cv2.imshow("Channels", img123 )	
     Timer(10.0, callVision).start()     
 
@@ -131,6 +146,9 @@ while(True):
     # Detect faces in the image
     faces = faceCascade.detectMultiScale(gray,scaleFactor=1.1,minNeighbors=5,minSize=(30, 30),flags = cv2.CASCADE_SCALE_IMAGE)
     print("Found {0} faces!".format(len(faces)))
+	
+    if(len(faces) < 1):
+	cv2.destroyWindow("Smile")
 
     for (x, y, w, h) in faces:
         cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 0, 255), 2)
