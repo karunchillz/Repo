@@ -1,6 +1,7 @@
 import numpy as np
 import cv2
 import time
+import mraa
 import requests
 import operator
 from threading import Timer
@@ -15,6 +16,11 @@ neutralAds = ['Neutral-1.jpg','Neutral-2.jpg', 'Neutral-3.jpg','Neutral-4.jpg','
 menIndex = 0
 womenIndex = 0
 neutralIndex = 0
+
+tempSensor = mraa.Gpio(26)
+tempSensor.dir(mraa.DIR_IN)
+motioSensor = mraa.Gpio(32)
+motionSensor.dir(mraa.DIR_IN)
 
 def processRequest( json, data, headers, params ):
     retries = 0
@@ -170,6 +176,10 @@ while(True):
 
     cv2.imshow("Main", frame)
     cv2.imwrite('color_image.png',frame) 
+	
+    print tempSensor.read()
+    print motionSensor.read()
+    print ("End of Loop")
     
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
