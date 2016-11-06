@@ -48,16 +48,16 @@ def renderResultOnImage( result):
 	for face in result['faces']:
 	    print("Gender :".face['gender'])
 	    print("Age :".face['age'])
-	    if face['gender'] == 'Male'
+	    if face['gender'] == 'Male':
 		maleNumber = maleNumber + 1
-	    else
+	    else:
 	        femaleNumber = femaleNumber + 1
 	if femaleNumber > maleNumber:	
     	    cv2.namedWindow("Channels")
     	    cv2.moveWindow("Channels",600,300)
 	    img123 = cv2.imread('man.jpg',0)
     	    cv2.imshow("Channels", img123 )
-	else
+	else:
     	    cv2.namedWindow("Channels")
     	    cv2.moveWindow("Channels",600,300)
 	    img123 = cv2.imread('woman.png',0)
