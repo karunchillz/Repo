@@ -66,9 +66,9 @@ def renderResultOnImage( result):
     	    cv2.moveWindow("Channels",600,300)
 	    img123 = cv2.imread(womenAds[womenIndex],0)
 	    cv2.resize(img123, (300, 300))
-	    if(womenIndex < 4)	
+	    if(womenIndex < 4):	
 	        womenIndex = womenIndex + 1
-	    else
+	    else:
 	        womenIndex = 0
     	    cv2.imshow("Channels", img123 )
 	else:
@@ -76,9 +76,9 @@ def renderResultOnImage( result):
     	    cv2.moveWindow("Channels",600,300)
 	    img123 = cv2.imread(menAds[menIndex],0)
 	    cv2.resize(img123, (300, 300))
-	    if(womenIndex < 4)	
+	    if(womenIndex < 4):	
 	        menIndex = menIndex + 1
-	    else
+	    else:
 	        menIndex = 0
     	    cv2.imshow("Channels", img123 )	
     else:			
@@ -86,9 +86,9 @@ def renderResultOnImage( result):
         cv2.moveWindow("Channels",600,300)
 	img123 = cv2.imread(neutralAds[neutralIndex],0)
 	cv2.resize(img123, (300, 300))
-	if(neutralIndex < 8)	
+	if(neutralIndex < 8):	
 	    neutralIndex = neutralIndex + 1
-	else
+	else:
 	    neutralIndex = 0
         cv2.imshow("Channels", img123 )	
 	
@@ -115,9 +115,9 @@ def callVision():
         cv2.moveWindow("Channels",600,300)
 	img123 = cv2.imread(neutralAds[neutralIndex],0)
 	cv2.resize(img123, (300, 300))
-	if(neutralIndex < 8)	
+	if(neutralIndex < 8):	
 	    neutralIndex = neutralIndex + 1
-	else
+	else:
 	    neutralIndex = 0
         cv2.imshow("Channels", img123 )	
     Timer(10.0, callVision).start()     
