@@ -65,7 +65,7 @@ def renderResultOnImage( result, img ):
         categoryName = sorted(result['description'], key=lambda x: x['score'])[0]['name']
         cv2.putText( img, categoryName, (30,30), cv2.FONT_HERSHEY_SIMPLEX, 2, (255,0,0),3) 	
     if 'faces' in result:
-	printf "faces".format(len(faces))
+	printf "faces".result['faces']
 	
 def callVision():
     # Load raw image file into memory
