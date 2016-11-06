@@ -31,9 +31,9 @@ def processRequest( json, data, headers, params ):
             elif 'content-type' in response.headers and isinstance(response.headers['content-type'], str): 
                 if 'application/json' in response.headers['content-type'].lower(): 
                     result = response.json() if response.content else None 
+		    print response.json();
                 elif 'image' in response.headers['content-type'].lower(): 
                     result = response.content
-		print result.json();
         else:
             print( "Error code: %d" % ( response.status_code ) )
             print( "Message: %s" % ( response.json()['error']['message'] ) )
