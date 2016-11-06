@@ -50,9 +50,8 @@ def renderResultOnImage( result):
     global neutralIndex
     if 'description' in result:
 	print result['description']
-    cv2.namedWindow("Channels")
+    cv2.namedWindow("Channels",flags=CV_WINDOW_NORMAL)
     cv2.moveWindow("Channels",0,0)
-    cv2.resizeWindow("Channels",300,300)
     if 'faces' in result:
 	maleNumber = 0
 	femaleNumber = 0
@@ -104,9 +103,8 @@ def callVision():
     if result is not None:
         renderResultOnImage( result)
     else:			
-        cv2.namedWindow("Channels")
-        cv2.moveWindow("Channels",0,0);
-        cv2.resizeWindow("Channels",300,300)
+        cv2.namedWindow("Channels", flags=CV_WINDOW_NORMAL)
+        cv2.moveWindow("Channels",0,0)
 	img123 = cv2.imread(neutralAds[neutralIndex],0)
 	if(neutralIndex < 8):	
 	    neutralIndex = neutralIndex + 1
@@ -130,9 +128,8 @@ Timer(10.0, callVision).start()
 while(True):
     # Read Frame and Write to Display
     ret,frame = cap.read()
-    cv2.namedWindow("Main")
-    cv2.moveWindow("Main",300,300);
-    cv2.resizeWindow("Main",300,300)	
+    cv2.namedWindow("Main", flags=CV_WINDOW_NORMAL)
+    cv2.moveWindow("Main",300,300)
     cv2.imshow("Main",frame)
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
@@ -160,9 +157,8 @@ while(True):
         for (x, y, w, h) in smile:
             print "Found", len(smile), "smiles!"
             #cv2.rectangle(roi_color, (x, y), (x+w, y+h), (255, 0, 0), 1)
-	    cv2.namedWindow("Smile")
-            cv2.MoveWindow("Smile",0,0);
-            cv2.ResizeWindow("Smile",40,40)
+	    cv2.namedWindow("Smile",flags=CV_WINDOW_NORMAL)
+            cv2.moveWindow("Smile",0,0)
 	    img12345 = cv2.imread('happy.jpg',0)
 	    cv2.resize(img12345, (50, 50))
             cv2.imshow("Smile", img12345 )
