@@ -8,7 +8,14 @@ from threading import Timer
 _url = 'https://api.projectoxford.ai/vision/v1/analyses'
 _key = 'c360270a2fcd4797ac7f16dbdac7c50d'
 _maxNumRetries = 10
- 
+menAds = ['men-1.jpg','men-2.jpg','men-3.jpg','men-4.jpg','men-5.jpg']
+womenAds = ['women-1.png','women-2.jpg','women-3.JPG','women-4.png','women-5.jpg']
+neutralAds = ['Neutral-1.jpg','Neutral-2.jpg', 'Neutral-3.jpg','Neutral-4.jpg','Neutral-5.jpg','Neutral-6.jpg','Neutral-7.jpg','Neutral-8.jpg','Neutral-9.jpg','Neutral-10.jpg']
+
+menIndex = 0
+womenIndex = 0
+neutralIndex = 0
+
 # Display images within Jupyter
 def processRequest( json, data, headers, params ):
 
@@ -55,17 +62,20 @@ def renderResultOnImage( result):
 	if femaleNumber > maleNumber:	
     	    cv2.namedWindow("Channels")
     	    cv2.moveWindow("Channels",600,300)
-	    img123 = cv2.imread('man.jpg',0)
+	    img123 = cv2.imread(womenAds[womenIndex],0)
+	    womenIndex = womenIndex + 1
     	    cv2.imshow("Channels", img123 )
 	else:
     	    cv2.namedWindow("Channels")
     	    cv2.moveWindow("Channels",600,300)
-	    img123 = cv2.imread('woman.png',0)
+	    img123 = cv2.imread(menAds[menIndex],0)
+	    menIndex = menIndex + 1
     	    cv2.imshow("Channels", img123 )	
     else:			
         cv2.namedWindow("Channels")
         cv2.moveWindow("Channels",600,300)
-	img123 = cv2.imread('neutral.jpeg',0)
+	img123 = cv2.imread(neutralAds[neutralIndex],0)
+	neutralIndex = neutralIndex + 1
         cv2.imshow("Channels", img123 )	
 	
 def callVision():
@@ -88,7 +98,8 @@ def callVision():
     else:			
         cv2.namedWindow("Channels")
         cv2.moveWindow("Channels",600,300)
-	img123 = cv2.imread('neutral.jpeg',0)
+	img123 = cv2.imread(neutralAds[neutralIndex],0)
+	neutralIndex = neutralIndex + 1
         cv2.imshow("Channels", img123 )	
     Timer(10.0, callVision).start()     
 
