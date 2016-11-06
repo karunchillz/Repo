@@ -95,7 +95,7 @@ def callVision():
         renderResultOnImage( result, img )
 
         cv2.namedWindow("Channels")
-        cv2.moveWindow("Channels",10,10)
+        cv2.moveWindow("Channels",600,300)
         cv2.imshow("Channels", img )
     Timer(10.0, callVision).start()     
 
@@ -113,13 +113,13 @@ while(True):
     # Read Frame and Write to Display
     ret,frame = cap.read()
     cv2.namedWindow("Main")
-    cv2.moveWindow("Main",300,300)
+    cv2.moveWindow("Main",10,10)
     cv2.imshow("Main",frame)
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
     # Detect faces in the image
     faces = faceCascade.detectMultiScale(gray,scaleFactor=1.1,minNeighbors=5,minSize=(30, 30),flags = cv2.CASCADE_SCALE_IMAGE)
-    print("Found {0} faces!".format(len(faces)))
+    print("Found {0} faces!".format(len(faces)))
 
     # Draw a rectangle around the faces
     for (x, y, w, h) in faces:
