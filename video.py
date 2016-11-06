@@ -63,18 +63,21 @@ def renderResultOnImage( result):
     	    cv2.namedWindow("Channels")
     	    cv2.moveWindow("Channels",600,300)
 	    img123 = cv2.imread(womenAds[womenIndex],0)
+	    cv2.resize(img123, (300, 300))
 	    womenIndex = womenIndex + 1
     	    cv2.imshow("Channels", img123 )
 	else:
     	    cv2.namedWindow("Channels")
     	    cv2.moveWindow("Channels",600,300)
 	    img123 = cv2.imread(menAds[menIndex],0)
+	    cv2.resize(img123, (300, 300))
 	    menIndex = menIndex + 1
     	    cv2.imshow("Channels", img123 )	
     else:			
         cv2.namedWindow("Channels")
         cv2.moveWindow("Channels",600,300)
 	img123 = cv2.imread(neutralAds[neutralIndex],0)
+	cv2.resize(img123, (300, 300))
 	neutralIndex = neutralIndex + 1
         cv2.imshow("Channels", img123 )	
 	
@@ -99,6 +102,7 @@ def callVision():
         cv2.namedWindow("Channels")
         cv2.moveWindow("Channels",600,300)
 	img123 = cv2.imread(neutralAds[neutralIndex],0)
+	cv2.resize(img123, (300, 300))
 	neutralIndex = neutralIndex + 1
         cv2.imshow("Channels", img123 )	
     Timer(10.0, callVision).start()     
@@ -120,6 +124,7 @@ while(True):
     ret,frame = cap.read()
     cv2.namedWindow("Main")
     cv2.moveWindow("Main",10,10)
+    cv2.resize(frame, (300, 300))	
     cv2.imshow("Main",frame)
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
@@ -144,11 +149,18 @@ while(True):
         for (x, y, w, h) in smile:
             print "Found", len(smile), "smiles!"
             cv2.rectangle(roi_color, (x, y), (x+w, y+h), (255, 0, 0), 1)
+	    cv2.namedWindow("Smile")
+    	    cv2.moveWindow("Smile",10,10)
+	    img12345 = cv2.imread('happy.jpg',0)
+	    cv2.resize(img12345, (50, 50))
+            cv2.imshow("Smile", img12345 )
+	
 
     # Draw a rectangle around the faces
     for (x, y, w, h) in faces:
 	cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2)
 
+    cv2.resize(frame, (300, 300))
     cv2.imshow("Main", frame)
     cv2.imwrite('color_image.png',frame) 
     
