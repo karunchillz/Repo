@@ -46,8 +46,8 @@ def renderResultOnImage( result):
 	maleNumber = 0
 	femaleNumber = 0
 	for face in result['faces']:
-	    print("Gender :".face['gender'])
-	    print("Age :".face['age'])
+	    print face['gender']
+	    print face['age']
 	    if face['gender'] == 'Male':
 		maleNumber = maleNumber + 1
 	    else:
