@@ -33,6 +33,7 @@ def processRequest( json, data, headers, params ):
                     result = response.json() if response.content else None 
                 elif 'image' in response.headers['content-type'].lower(): 
                     result = response.content
+		print result;
         else:
             print( "Error code: %d" % ( response.status_code ) )
             print( "Message: %s" % ( response.json()['error']['message'] ) )
@@ -41,11 +42,11 @@ def processRequest( json, data, headers, params ):
 
 def renderResultOnImage( result):
     if 'categories' in result:
-	   print('categories '.result['categories'])
+	   print result['categories']
     if 'description' in result:
-	   print('description '.result['description'])
+	   print result['description']
     if 'faces' in result:
-	   print('faces '.result['faces'])
+	   print result['faces']
 		
     #cv2.namedWindow("Channels")
     #cv2.moveWindow("Channels",600,300)
