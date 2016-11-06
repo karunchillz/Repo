@@ -51,8 +51,8 @@ def renderResultOnImage( result):
     if 'description' in result:
 	print result['description']
     cv2.namedWindow("Channels")
-    cv2.MoveWindow("Channels",0,0)
-    cv2.ResizeWindow("Channels",300,300)
+    cv2.moveWindow("Channels",0,0)
+    cv2.resizeWindow("Channels",300,300)
     if 'faces' in result:
 	maleNumber = 0
 	femaleNumber = 0
@@ -105,8 +105,8 @@ def callVision():
         renderResultOnImage( result)
     else:			
         cv2.namedWindow("Channels")
-        cv2.MoveWindow("Channels",0,0);
-        cv2.ResizeWindow("Channels",300,300)
+        cv2.moveWindow("Channels",0,0);
+        cv2.resizeWindow("Channels",300,300)
 	img123 = cv2.imread(neutralAds[neutralIndex],0)
 	if(neutralIndex < 8):	
 	    neutralIndex = neutralIndex + 1
@@ -131,8 +131,8 @@ while(True):
     # Read Frame and Write to Display
     ret,frame = cap.read()
     cv2.namedWindow("Main")
-    cv2.MoveWindow("Main",300,300);
-    cv2.ResizeWindow("Main",300,300)	
+    cv2.moveWindow("Main",300,300);
+    cv2.resizeWindow("Main",300,300)	
     cv2.imshow("Main",frame)
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
