@@ -40,16 +40,34 @@ def processRequest( json, data, headers, params ):
     return result
 
 def renderResultOnImage( result):
-    if 'categories' in result:
-	   print result['categories']
-    if 'description' in result:
-	   print result['description']
+    if 'description' in result && 'captions' in result['description']:
+	if len(result['description']['captions']) > 0
+	    print result['description']['captions'][0]['text']
     if 'faces' in result:
-	   print result['faces']
-		
-    #cv2.namedWindow("Channels")
-    #cv2.moveWindow("Channels",600,300)
-    #cv2.imshow("Channels", img )	
+	maleNumber = 0
+	femaleNumber = 0
+	for face in result['faces']:
+	    print("Gender :".face['gender'])
+	    print("Age :".face['age'])
+	    if face['gender'] == 'Male'
+		maleNumber = maleNumber + 1
+	    else
+	        femaleNumber = femaleNumber + 1
+	if femaleNumber > maleNumber:	
+    	    cv2.namedWindow("Channels")
+    	    cv2.moveWindow("Channels",600,300)
+	    img123 = cv2.imread('man.jpg',0)
+    	    cv2.imshow("Channels", img123 )
+	else
+    	    cv2.namedWindow("Channels")
+    	    cv2.moveWindow("Channels",600,300)
+	    img123 = cv2.imread('woman.png',0)
+    	    cv2.imshow("Channels", img123 )	
+    else:			
+        cv2.namedWindow("Channels")
+        cv2.moveWindow("Channels",600,300)
+	img123 = cv2.imread('neutral.jpeg',0)
+        cv2.imshow("Channels", img123 )	
 	
 def callVision():
     # Load raw image file into memory
@@ -58,7 +76,7 @@ def callVision():
         data = f.read()
     
     # Computer Vision parameters
-    params = { 'visualFeatures' : 'Description,Faces,Categories'} 
+    params = { 'visualFeatures' : 'Faces,Categories'} 
 
     headers = dict()
     headers['Ocp-Apim-Subscription-Key'] = _key
