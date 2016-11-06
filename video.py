@@ -58,18 +58,15 @@ def processRequest( json, data, headers, params ):
     return result
 
 def renderResultOnImage( result, img ):
-    
-    """Display the obtained results onto the input image"""
-    R = int(result['color']['accentColor'][:2],16)
-    G = int(result['color']['accentColor'][2:4],16)
-    B = int(result['color']['accentColor'][4:],16)
-
-    cv2.rectangle( img,(0,0), (img.shape[1], img.shape[0]), color = (R,G,B), thickness = 25 )
-
     if 'categories' in result:
         categoryName = sorted(result['categories'], key=lambda x: x['score'])[0]['name']
-        cv2.putText( img, categoryName, (30,70), cv2.FONT_HERSHEY_SIMPLEX, 2, (255,0,0),3) 
-
+        cv2.putText( img, categoryName, (230,230), cv2.FONT_HERSHEY_SIMPLEX, 2, (255,0,0),3) 
+    if 'description' in result:
+        categoryName = sorted(result['description'], key=lambda x: x['score'])[0]['name']
+        cv2.putText( img, categoryName, (30,30), cv2.FONT_HERSHEY_SIMPLEX, 2, (255,0,0),3) 	
+    if 'faces' in result:
+	printf "faces".format(len(faces))
+	
 def callVision():
     # Load raw image file into memory
     pathToFileInDisk = '/home/root/Desktop/code/color_image.png'
@@ -77,7 +74,7 @@ def callVision():
         data = f.read()
     
     # Computer Vision parameters
-    params = { 'visualFeatures' : 'Color,Categories'} 
+    params = { 'visualFeatures' : 'Description,Faces,Categories'} 
 
     headers = dict()
     headers['Ocp-Apim-Subscription-Key'] = _key
