@@ -59,12 +59,17 @@ def processRequest( json, data, headers, params ):
 
 def renderResultOnImage( result, img ):
     if 'categories' in result:
-        categoryName = sorted(result['categories'], key=lambda x: x['score'])[0]['name']
-        cv2.putText( img, categoryName, (230,230), cv2.FONT_HERSHEY_SIMPLEX, 2, (255,0,0),3) 
+	printf ("categories ".result['categories'])
+        #categoryName = sorted(result['categories'], key=lambda x: x['score'])[0]['name']
+        #cv2.putText( img, categoryName, (230,230), cv2.FONT_HERSHEY_SIMPLEX, 2, (255,0,0),3) 
     if 'description' in result:
 	printf ("description ".result['description'])
     if 'faces' in result:
 	printf ("faces ".result['faces'])
+		
+    #cv2.namedWindow("Channels")
+    #cv2.moveWindow("Channels",600,300)
+    #cv2.imshow("Channels", img )	
 	
 def callVision():
     # Load raw image file into memory
@@ -85,14 +90,10 @@ def callVision():
 
     if result is not None:
         # Load the original image, fetched from the URL
-        data8uint = np.fromstring( data, np.uint8 ) # Convert string to an unsigned int array
-        img = cv2.cvtColor( cv2.imdecode( data8uint, cv2.IMREAD_COLOR ), cv2.COLOR_BGR2RGB )
+        # data8uint = np.fromstring( data, np.uint8 ) # Convert string to an unsigned int array
+        # img = cv2.cvtColor( cv2.imdecode( data8uint, cv2.IMREAD_COLOR ), cv2.COLOR_BGR2RGB )
 
         renderResultOnImage( result, img )
-
-        cv2.namedWindow("Channels")
-        cv2.moveWindow("Channels",600,300)
-        cv2.imshow("Channels", img )
     Timer(10.0, callVision).start()     
 
 
