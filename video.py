@@ -30,8 +30,7 @@ def processRequest( json, data, headers, params ):
                 result = None 
             elif 'content-type' in response.headers and isinstance(response.headers['content-type'], str): 
                 if 'application/json' in response.headers['content-type'].lower(): 
-                    result = response.json() if response.content else None 
-		    print response.json();
+                    result = response.json() if response.content else None
                 elif 'image' in response.headers['content-type'].lower(): 
                     result = response.content
         else:
