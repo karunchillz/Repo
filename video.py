@@ -95,6 +95,7 @@ cap = cv2.VideoCapture(2)
 cascPath = "haarcascade_frontalface_default.xml"
 smilePath = "haarcascade_smile.xml"
 faceCascade = cv2.CascadeClassifier(cascPath)
+smileCascade = cv2.CascadeClassifier(smilePath)
 
 Timer(10.0, callVision).start()
 
