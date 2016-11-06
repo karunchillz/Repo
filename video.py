@@ -16,7 +16,6 @@ menIndex = 0
 womenIndex = 0
 neutralIndex = 0
 
-# Display images within Jupyter
 def processRequest( json, data, headers, params ):
     retries = 0
     result = None
@@ -51,8 +50,9 @@ def renderResultOnImage( result):
     global neutralIndex
     if 'description' in result:
 	print result['description']
-    cv2.namedWindow("Channels", cv2.WND_PROP_FULLSCREEN)	
-    cv2.setWindowProperty("Channels", cv2.WND_PROP_FULLSCREEN, cv2.CV_WINDOW_FULLSCREEN)	
+    cv2.namedWindow("Channels")
+    cv2.MoveWindow("Channels",0,0)
+    cv2.ResizeWindow("Channels",300,300)
     if 'faces' in result:
 	maleNumber = 0
 	femaleNumber = 0
@@ -65,7 +65,6 @@ def renderResultOnImage( result):
 	        femaleNumber = femaleNumber + 1
 	if femaleNumber > maleNumber:
 	    img123 = cv2.imread(womenAds[womenIndex],0)
-	    cv2.resize(img123, (300, 300))
 	    if(womenIndex < 4):	
 	        womenIndex = womenIndex + 1
 	    else:
@@ -73,7 +72,6 @@ def renderResultOnImage( result):
     	    cv2.imshow("Channels", img123 )
 	else:
 	    img123 = cv2.imread(menAds[menIndex],0)
-	    cv2.resize(img123, (300, 300))
 	    if(menIndex < 4):	
 	        menIndex = menIndex + 1
 	    else:
@@ -81,7 +79,6 @@ def renderResultOnImage( result):
     	    cv2.imshow("Channels", img123 )	
     else:
 	img123 = cv2.imread(neutralAds[neutralIndex],0)
-	cv2.resize(img123, (300, 300))
 	if(neutralIndex < 8):	
 	    neutralIndex = neutralIndex + 1
 	else:
@@ -107,10 +104,10 @@ def callVision():
     if result is not None:
         renderResultOnImage( result)
     else:			
-        cv2.namedWindow("Channels", cv2.WND_PROP_FULLSCREEN)
-        cv2.setWindowProperty("Channels", cv2.WND_PROP_FULLSCREEN, cv2.CV_WINDOW_FULLSCREEN)
+        cv2.namedWindow("Channels")
+        cv2.MoveWindow("Channels",0,0);
+        cv2.ResizeWindow("Channels",300,300)
 	img123 = cv2.imread(neutralAds[neutralIndex],0)
-	cv2.resize(img123, (300, 300))
 	if(neutralIndex < 8):	
 	    neutralIndex = neutralIndex + 1
 	else:
@@ -134,8 +131,8 @@ while(True):
     # Read Frame and Write to Display
     ret,frame = cap.read()
     cv2.namedWindow("Main")
-    cv2.moveWindow("Main",10,10)
-    cv2.resize(frame, (300, 300))	
+    cv2.MoveWindow("Main",300,300);
+    cv2.ResizeWindow("Main",300,300)	
     cv2.imshow("Main",frame)
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
@@ -162,9 +159,10 @@ while(True):
         # Set region of interest for smiles
         for (x, y, w, h) in smile:
             print "Found", len(smile), "smiles!"
-            cv2.rectangle(roi_color, (x, y), (x+w, y+h), (255, 0, 0), 1)
+            #cv2.rectangle(roi_color, (x, y), (x+w, y+h), (255, 0, 0), 1)
 	    cv2.namedWindow("Smile")
-    	    cv2.moveWindow("Smile",10,10)
+            cv2.MoveWindow("Smile",0,0);
+            cv2.ResizeWindow("Smile",40,40)
 	    img12345 = cv2.imread('happy.jpg',0)
 	    cv2.resize(img12345, (50, 50))
             cv2.imshow("Smile", img12345 )
@@ -174,7 +172,6 @@ while(True):
     for (x, y, w, h) in faces:
 	cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2)
 
-    cv2.resize(frame, (300, 300))
     cv2.imshow("Main", frame)
     cv2.imwrite('color_image.png',frame) 
     
