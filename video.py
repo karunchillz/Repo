@@ -41,11 +41,11 @@ def processRequest( json, data, headers, params ):
 
 def renderResultOnImage( result):
     if 'categories' in result:
-	   printf ("categories ".result['categories'])
+	   print('categories '.result['categories'])
     if 'description' in result:
-	   printf ("description ".result['description'])
+	   print('description '.result['description'])
     if 'faces' in result:
-	   printf ("faces ".result['faces'])
+	   print('faces '.result['faces'])
 		
     #cv2.namedWindow("Channels")
     #cv2.moveWindow("Channels",600,300)
