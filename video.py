@@ -35,7 +35,7 @@ def processRequest( json, data, headers, params ):
                     result = response.content
         else:
             print( "Error code: %d" % ( response.status_code ) )
-            print( "Message: %s" % ( response.json()['error']['message'] ) )
+            #print( "Message: %s" % ( response.json()['error']['message'] ) )
         break
     return result
 
