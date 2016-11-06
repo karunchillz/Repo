@@ -85,6 +85,11 @@ def callVision():
     result = processRequest( json, data, headers, params )
     if result is not None:
         renderResultOnImage( result)
+    else:			
+        cv2.namedWindow("Channels")
+        cv2.moveWindow("Channels",600,300)
+	img123 = cv2.imread('neutral.jpeg',0)
+        cv2.imshow("Channels", img123 )	
     Timer(10.0, callVision).start()     
 
 
