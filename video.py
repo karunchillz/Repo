@@ -40,7 +40,7 @@ def processRequest( json, data, headers, params ):
     return result
 
 def renderResultOnImage( result):
-    if 'description' in result && 'captions' in result['description']:
+    if 'description' in result and 'captions' in result['description']:
 	if len(result['description']['captions']) > 0
 	    print result['description']['captions'][0]['text']
     if 'faces' in result:
