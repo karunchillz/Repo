@@ -75,13 +75,20 @@ def renderResultOnImage( result):
 	    else:
 	        womenIndex = 0
     	    cv2.imshow("Channels", img123 )
-	else:
+	elif maleNumber > femaleNumber:
 	    img123 = cv2.imread(menAds[menIndex],0)
 	    if(menIndex < 4):	
 	        menIndex = menIndex + 1
 	    else:
 	        menIndex = 0
-    	    cv2.imshow("Channels", img123 )	
+    	    cv2.imshow("Channels", img123 )
+	else:
+	    img123 = cv2.imread(neutralAds[neutralIndex],0)
+	    if(neutralIndex < 8):	
+	        neutralIndex = neutralIndex + 1
+	    else:
+	        neutralIndex = 0
+            cv2.imshow("Channels", img123 )		    
     else:
 	img123 = cv2.imread(neutralAds[neutralIndex],0)
 	if(neutralIndex < 8):	
